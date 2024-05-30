@@ -19,9 +19,6 @@ $.ajax({
                 url: './controllers/TipoUserLogged.php',
                 type: 'get',
                 success: function(response) {
-                    
-                    console.log(response);
-
                     if (response == 1) {
                         document.querySelector(".status-res").innerHTML = 'Você está logado como <span class="tipoUser">usuário comum</span>!';
                     } else {

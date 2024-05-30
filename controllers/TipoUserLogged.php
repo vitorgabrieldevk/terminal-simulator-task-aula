@@ -1,5 +1,8 @@
 <?php
 
+// Include arquivo de conexão
+include('../includes/lps-connect.php');
+
 if ( !isset($_SESSION) ) session_start();
 
 $idUser = $_SESSION['idUser'];
@@ -8,7 +11,9 @@ $TypeUser = mysqli_query($connection, "SELECT * FROM cadUser WHERE idcadUser = $
 
 if ($TypeUser) {
     if (mysqli_num_rows($TypeUser) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        $userID = $row['idcadUser'];
+        $row = mysqli_fetch_assoc($TypeUser);
+        $IdTypeUser = $row['tipoUser'];
+
+        echo $IdTypeUser;
     };
 };

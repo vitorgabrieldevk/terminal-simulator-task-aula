@@ -24,6 +24,8 @@ if (isset($_SESSION['IsLogged']) && $_SESSION['IsLogged'] === true) {
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 </head>
 <body>
     <div class="terminal">
@@ -55,6 +57,6 @@ if (isset($_SESSION['IsLogged']) && $_SESSION['IsLogged'] === true) {
         </div>
     </div>
 
-    <script src="assets/login.js"></script>
+    <script src="assets/criar.js"></script>
 </body>
 </html>
