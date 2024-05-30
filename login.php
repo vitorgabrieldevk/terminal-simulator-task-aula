@@ -23,6 +23,7 @@ if (isset($_SESSION['IsLogged']) && $_SESSION['IsLogged'] === true) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>C:\Program Files (x86)/terminal.exe</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
