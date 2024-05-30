@@ -43,9 +43,6 @@ $.ajax({
                         }
                     }); 
 
-                   document.querySelectorAll(".NameUser").forEach(element => {
-                        element.innerText = 'C:/Users/teste>';
-                    });
                 },
                 error: function(xhr, status, error) {
                     reject('Erro na requisição: ' + status + ' - ' + error);
@@ -111,20 +108,6 @@ function executeCommand(command) {
                 <div class="result"><span class="list-comand">HELP</span> -----------------Exibe a lista de comandos</div>
                 <div class="result"><span class="list-comand">ls</span>--------------------Exibe as pastas do diretório especificado ou atual.</div>
                 <div class="result"><span class="list-comand">dir</span>-------------------Exibe as pastas do diretório especificado ou atual.</div>
-            `;
-            break;
-        case 'ls':
-            document.querySelector(".output").innerHTML  += `
-                <div class="result">$ 29/05/2024  19:53    &lt;tDIR&gt;          .</div>
-                <div class="result">$ 29/05/2024  19:53    &lt;DIR&gt;          ..</div> 
-                <div class="result">$ 27/05/2024  09:29    &lt;DIR&gt;          .android</div> 
-                <div class="result">$ 28/05/2024  10:27                76 .gitconfig</div> 
-                <div class="result">$ 27/05/2024  10:38    &lt;DIR&gt;          .gradle</div> 
-                <div class="result">$ 27/05/2024  21:50    &lt;DIR&gt;         .vscode</div> 
-                <div class="result">$ 27/05/2024  19:24    &lt;DIR&gt;          Saved Games</div> 
-                <div class="result">$ 27/05/2024  12:31    &lt;DIR&gt;          OneDrive</div>
-                <div class="result">$ 2 arquivo(s)            197 bytes</div>
-                <div class="result">$  14 pasta(s)   319.216.332.800 bytes disponíveis</div> 
             `;
             break;
         case 'dir':
@@ -199,7 +182,6 @@ $(".linkDeslogar").click(() => {
                 type: 'GET',
                 success: function(response) {
                     if (response === 'true') {
-                        console.log('Saindoo...');
                         window.location.href = "index.php";                  
                     };
                 },
