@@ -1,0 +1,107 @@
+.terminal {
+    width: 80%;
+    margin: 0 auto;
+    background-color: #222;
+    color: #fff;
+    font-family: monospace;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.prompt {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.user-name {
+    font-weight: bold;
+}
+
+.current-dir {
+    margin-left: 5px;
+}
+
+.cursor {
+    margin-left: 5px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+.output {
+    overflow-y: scroll;
+    height: 300px;
+}
+
+.output::-webkit-scrollbar {
+    width: 9px;
+}
+  
+.output::-webkit-scrollbar-track {
+    background: rgb(66, 66, 65);
+}
+ 
+.output::-webkit-scrollbar-thumb {
+    background-color: rgb(228, 228, 228);
+    border-radius: 20px;    
+}
+
+.input {
+    display: flex;
+    align-items: center;
+}
+
+#command-input {
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 3px;
+    outline: none;
+    font-size: 18px;
+}
+
+.link-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 0;
+    font-size: 16px;
+}
+
+.link {
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.command {
+    color: rgb(11, 241, 11);
+}
+
+.list-comand {
+    color: rgb(241, 241, 40);
+    font-weight: 600;
+}
+
+.titulo {
+    color: rgb(241, 241, 40);
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.erro-span {
+    font-weight: 600;
+    color: rgb(244, 51, 51);
+}
+
+.success-span {
+    color: rgb(241, 241, 40);
+    font-weight: 600;
+    font-size: 18px;
+}
