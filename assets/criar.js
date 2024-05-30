@@ -128,7 +128,7 @@ function executeCommand(command) {
                             autocapitalize: "off"
                         },
                         showCancelButton: true,
-                        confirmButtonText: "Look up",
+                        confirmButtonText: "Salvar",
                         showLoaderOnConfirm: true,
                         preConfirm: async (login) => {
                             ObjectCreateAccount.name = login;
@@ -141,7 +141,19 @@ function executeCommand(command) {
                                 type: 'post',
                                 data: { data : JSON.stringify(ObjectCreateAccount) },
                                 success: function(response) {
-                                       console.log(response);
+                                    
+                                    Swal.fire({
+                                        position: "center",
+                                        icon: "success",
+                                        title: "Sua conta foi criada",
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                      });
+
+                                      setTimeout(() => {
+                                            window.location.href = "index.php";
+                                      }, 1500);
+
                                 },
                                 error: function(xhr, status, error) {
                                     reject('Erro na requisição: ' + status + ' - ' + error);

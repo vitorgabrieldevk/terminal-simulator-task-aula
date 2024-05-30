@@ -5,6 +5,8 @@ const outputDiv = document.querySelector('.output');
 
 var IsLogged = false;
 
+var nameUser = '';
+
 $(".deslogar").hide();
 
 $.ajax({
@@ -20,11 +22,30 @@ $.ajax({
                 type: 'get',
                 success: function(response) {
                     if (response == 1) {
-                        document.querySelector(".status-res").innerHTML = 'Você está logado como <span class="tipoUser">usuário comum</span>!';
+                        document.querySelector(".status-res").innerHTML = 'Você está logado como <span class="tipoUser">usuário Estudante</span>!';
                     } else {
-                        document.querySelector(".status-res").innerHTML = 'Você está logado como <span class="tipoUser admin">usuário admin</span>!';
+                        document.querySelector(".status-res").innerHTML = 'Você está logado como <span class="tipoUser admin">usuário Professor</span>!';
                     };
 
+                    $.ajax({
+                        url: './controllers/GetDadosUser.php',
+                        type: 'get',
+                        success: function(response) {
+
+                        nameUser = response;
+
+                           document.querySelectorAll(".NameUser").forEach(element => {
+                                element.innerText = `C:/Users/${response.split(" ")[0].trim()}>`;
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            reject('Erro na requisição: ' + status + ' - ' + error);
+                        }
+                    }); 
+
+                   document.querySelectorAll(".NameUser").forEach(element => {
+                        element.innerText = 'C:/Users/teste>';
+                    });
                 },
                 error: function(xhr, status, error) {
                     reject('Erro na requisição: ' + status + ' - ' + error);
@@ -54,7 +75,7 @@ commandInput.addEventListener('keydown', function(event) {
 function executeCommand(command) {
     const outputElement = document.createElement('div');
     outputElement.classList.add('command');
-    outputElement.textContent = `C:/Users/vitor> ${command}`;
+    outputElement.textContent = `C:/Users/${nameUser.split(" ")[0].trim()}> ${command}`;
     outputDiv.appendChild(outputElement);
 
     const resultElement = document.createElement('div');
@@ -129,6 +150,33 @@ function executeCommand(command) {
         case 'clear':
             outputDiv.innerHTML = '';
             break;
+        case 'exit':
+                Swal.fire({
+                    title: "Você está saindo da sua conta",
+                    showDenyButton: true,
+                    confirmButtonText: "Continuar",
+                    denyButtonText: `Cancelar`
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: './controllers/LogOut.php',
+                            type: 'GET',
+                            success: function(response) {
+                                if (response === 'true') {
+                                    console.log('Saindoo...');
+                                    window.location.href = "index.php";                  
+                                };
+                            },
+                            error: function(xhr, status, error) {
+                                reject('Erro na requisição: ' + status + ' - ' + error);
+                            }
+                        }); 
+            
+                    } else if (result.isDenied) {
+                        resultElement.textContent = `'${command}' -> Operação cancelada!`;
+                    }
+                });   
+                break;
         default:
             resultElement.textContent = `'${command}' não é reconhecido como um comando interno ou  um programa operável ou um arquivo em lotes`;
     }

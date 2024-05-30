@@ -10,4 +10,20 @@ $hashedPassword = password_hash($dados->password, PASSWORD_DEFAULT);
 $result = mysqli_query($connection, "INSERT INTO caduser (name, password, email, tipoUser) VALUES 
                                      ('$dados->name', '$hashedPassword', '$dados->email', '$dados->tipoUser')");
 
-echo 'true';
+// Check for insertion errors
+if (!$result) {
+  exit;
+}
+
+// Busca os dados de Login
+$GetUser = mysqli_query($connection, "SELECT * FROM cadUser WHERE email = '$dados->email';");
+$row = mysqli_fetch_assoc($GetUser);
+
+if ($row) { // Check if user exists before accessing properties
+  session_start();
+  $_SESSION['IsLogged'] = true;
+  $_SESSION['idUser'] = $row['idcadUser'];
+
+  echo 'true';
+};
+

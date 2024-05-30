@@ -36,13 +36,13 @@
         </div>
         <hr class="deslogar">
         <div class="prompt">
-            <span class="user-name">C:/Users/vitor></span>
+            <span class="user-name NameUser">C:/Users/default></span>
             <span class="current-dir">~ </span>
             <span class="comand">&nbsp; $ <span class="status">Status: </span><span class="status-res">Não está logado</span></span>
         </div>
         <hr>
         <div class="prompt">
-            <span class="user-name">C:/Users/vitor></span>
+            <span class="user-name NameUser">C:/Users/default></span>
             <span class="current-dir">~</span>
             <span class="cursor">|</span>
         </div>
