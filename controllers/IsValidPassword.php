@@ -18,6 +18,11 @@ if ( $isValid ) {
         $_SESSION['IsLogged'] = true;
         $_SESSION['idUser'] = $data->idUsuario;
 
+        $date = date('d/m/Y H:i:s');
+
+        mysqli_query($connection, "INSERT INTO tblogin (cadUser_idcadUser) VALUES 
+                                     ('$data->idUsuario')");
+
         echo true;
 } else {
     echo false;

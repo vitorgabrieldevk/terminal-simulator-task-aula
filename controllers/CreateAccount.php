@@ -24,6 +24,9 @@ if ($row) { // Check if user exists before accessing properties
   $_SESSION['IsLogged'] = true;
   $_SESSION['idUser'] = $row['idcadUser'];
 
+  mysqli_query($connection, "INSERT INTO tblogin (cadUser_idcadUser) VALUES 
+                                                                      ('$data->idUsuario')");
+
   echo 'true';
 };
 
