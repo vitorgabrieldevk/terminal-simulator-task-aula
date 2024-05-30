@@ -58,6 +58,12 @@ function executeCommand(command) {
                 <div class="result">$  14 pasta(s)   319.216.332.800 bytes disponíveis</div> 
             `;
             break;
+        case 'login.php':
+            window.location.href = "./login.php";
+            break;
+        case 'criar.php':
+            window.location.href = "./criar.php";
+            break;
         case 'clear':
             outputDiv.innerHTML = '';
             break;

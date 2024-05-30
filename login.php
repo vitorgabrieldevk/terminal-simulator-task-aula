@@ -32,9 +32,7 @@
             <span class="current-dir">~</span>
             <span class="cursor">|</span>
         </div>
-        <div class="output">
-                
-        </div>
+        <div class="output"></div>
         <div class="input">
             <input type="text" id="command-input">
         </div>

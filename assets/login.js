@@ -33,42 +33,50 @@ function executeCommand(command) {
         // Email deve ter mais do que 5 caracteres
         if ( command.length > 5 ) {
             // Processo de validação de E-mail
-            if (Usuarios.email === command) {
-    
-                document.querySelector(".output").innerHTML  += `
-                    <div class="result">Processando dados, aguarde...</div>
-                `;
 
-                // Alterar o tipo do campo
-                commandInput.type = 'password';
-
-                // Troca o tipo de validação a ser feita
-                IsValidEmail = true;
-
-                // Esconde todos os elementos com a class current-dir da view
-                $(".current-dir").hide();
-    
-                // Exibi bloco de mensagem de input atual
-                document.querySelector(".output").innerHTML  += `
-                    <hr>
-                    <div class="result">C:/Users/vitor> ~ Digite sua senha:</div>
-    
-                    <div class="prompt">
-                        <span class="user-name">C:/Users/vitor></span>
-                        <span class="current-dir">~</span>
-                        <span class="cursor">|</span>
-                    </div>
-                `;
-
-            } else {
-                // Exibi a mensagem de erro de E-mail incorreta
-                document.querySelector(".output").innerHTML  += `
-                    <div class="result"><span class="erro-span">Este E-mail não está cadastrado!</span></div>
-                `;
-            };
-    
+            $.ajax({
+                url: './controllers/IsValidEmail.php',
+                type: 'post',
+                data: { data : JSON.stringify(command) },
+                success: function(response) {
+                        if (response == true) {
+                            document.querySelector(".output").innerHTML  += `
+                            <div class="result">Processando dados, aguarde...</div>
+                        `;
+        
+                        // Alterar o tipo do campo
+                        commandInput.type = 'password';
+        
+                        // Troca o tipo de validação a ser feita
+                        IsValidEmail = true;
+        
+                        // Esconde todos os elementos com a class current-dir da view
+                        $(".current-dir").hide();
+            
+                        // Exibi bloco de mensagem de input atual
+                        document.querySelector(".output").innerHTML  += `
+                            <hr>
+                            <div class="result">C:/Users/vitor> ~ Digite sua senha:</div>
+            
+                            <div class="prompt">
+                                <span class="user-name">C:/Users/vitor></span>
+                                <span class="current-dir">~</span>
+                                <span class="cursor">|</span>
+                            </div>
+                        `;
+                    } else {
+                        // Exibi a mensagem de erro de E-mail incorreto
+                        document.querySelector(".output").innerHTML  += `
+                            <div class="result"><span class="erro-span">E-mail não cadastrado!</span></div>
+                        `
+                    };
+                },
+                error: function(xhr, status, error) {
+                    reject('Erro na requisição: ' + status + ' - ' + error);
+                }
+            });    
         } else {
-                // Exibi a mensagem de erro de E-mail inválida
+             // Exibi a mensagem de erro de E-mail inválida
             document.querySelector(".output").innerHTML  += `
                     <div class="result"><span class="erro-span">Digite um E-mail válido</span></div>
             `;
