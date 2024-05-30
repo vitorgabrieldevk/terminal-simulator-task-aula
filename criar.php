@@ -15,7 +15,6 @@ if (isset($_SESSION['IsLogged']) && $_SESSION['IsLogged'] === true) {
 
 ?>
 
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -35,12 +34,12 @@ if (isset($_SESSION['IsLogged']) && $_SESSION['IsLogged'] === true) {
         <div class="prompt">
             <span class="user-name link-container">
                 C:\Program Files (x86)\Microsoft.NET\Primary>
-                <a href="criar.php" class="link"><i class="bi bi-person-plus"></i> Criar sua conta</a>
+                <a href="login.php" class="link"><i class="bi bi-person-plus"></i> Entrar na sua conta</a>
             </span>
         </div>
         <hr>
         <div class="prompt">
-            <span class="user-name">C:/Users/vitor> ~(˘▽˘~) <span class="titulo">Entre em sua conta rapidamente</span> (~˘▽˘)~</span>
+            <span class="user-name">C:/Users/vitor> ~(˘▽˘~) <span class="titulo">Se cadastre-se gratuitamente</span> (~˘▽˘)~</span>
         </div>
         <div class="prompt">
             <span class="user-name">C:/Users/vitor> ~ Digite seu E-mail:</span>

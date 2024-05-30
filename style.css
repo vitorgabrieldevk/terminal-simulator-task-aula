@@ -105,3 +105,23 @@
     font-weight: 600;
     font-size: 18px;
 }
+
+.status {
+    font-weight: 600;
+    color: #afafaf;
+}
+
+.status-res {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.tipoUser {
+    font-weight: 700;
+    color: yellow;
+}
+
+.admin {
+    color: red;
+}

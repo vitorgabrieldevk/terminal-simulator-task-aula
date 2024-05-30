@@ -1,5 +1,48 @@
+
+
 const commandInput = document.getElementById('command-input');
 const outputDiv = document.querySelector('.output');
+
+var IsLogged = false;
+
+$(".deslogar").hide();
+
+$.ajax({
+    url: './controllers/IsLogged.php',
+    type: 'GET',
+    success: function(response) {
+        if (response === 'true') {
+
+            $(".deslogar").show();
+
+            $.ajax({
+                url: './controllers/TipoUserLogged.php',
+                type: 'get',
+                success: function(response) {
+                    
+                    console.log(response);
+
+                    if (response == 1) {
+                        document.querySelector(".status-res").innerHTML = 'Você está logado como <span class="tipoUser">usuário comum</span>!';
+                    } else {
+                        document.querySelector(".status-res").innerHTML = 'Você está logado como <span class="tipoUser admin">usuário admin</span>!';
+                    };
+
+                },
+                error: function(xhr, status, error) {
+                    reject('Erro na requisição: ' + status + ' - ' + error);
+                }
+            }); 
+
+            $(".OptionsAccounts").hide();
+
+            IsLogged = true;
+        };
+    },
+    error: function(xhr, status, error) {
+        reject('Erro na requisição: ' + status + ' - ' + error);
+    }
+});    
 
 commandInput.focus();
 
@@ -19,6 +62,28 @@ function executeCommand(command) {
 
     const resultElement = document.createElement('div');
     resultElement.classList.add('result');
+
+    if (!IsLogged) {
+
+        switch (command)  {
+            case 'login':
+                window.location.href = "./login.php";
+                break;
+            case 'criar':
+                window.location.href = "./criar.php";
+                break;
+            case 'clear':
+                outputDiv.innerHTML = '';
+                break;
+            default:
+                document.querySelector(".output").innerHTML  += `
+                    <div class="result"><span class="erro-span">Você não está logado!</span></div>
+                `;
+                break;
+        }
+
+        return;
+    };
 
     switch (command) {
         case 'help':
@@ -58,10 +123,10 @@ function executeCommand(command) {
                 <div class="result">$  14 pasta(s)   319.216.332.800 bytes disponíveis</div> 
             `;
             break;
-        case 'login.php':
+        case 'login':
             window.location.href = "./login.php";
             break;
-        case 'criar.php':
+        case 'criar':
             window.location.href = "./criar.php";
             break;
         case 'clear':
@@ -75,3 +140,31 @@ function executeCommand(command) {
     outputDiv.scrollTop = outputDiv.scrollHeight;
     commandInput.focus();
 }
+
+$(".linkDeslogar").click(() => {
+    Swal.fire({
+        title: "Você está saindo da sua conta",
+        showDenyButton: true,
+        confirmButtonText: "Continuar",
+        denyButtonText: `Cancelar`
+      }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: './controllers/LogOut.php',
+                type: 'GET',
+                success: function(response) {
+                    if (response === 'true') {
+                        console.log('Saindoo...');
+                        window.location.href = "index.php";                  
+                    };
+                },
+                error: function(xhr, status, error) {
+                    reject('Erro na requisição: ' + status + ' - ' + error);
+                }
+            }); 
+
+        } else if (result.isDenied) {
+          Swal.fire("Operação cancelada!", "", "info");
+        }
+      });    
+});

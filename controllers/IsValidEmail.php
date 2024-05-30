@@ -6,13 +6,16 @@ include('../includes/lps-connect.php');
 $email = json_decode($_POST['data']);
 
 // Preparar e executar a consulta SQL para selecionar o usuário
-$ExistEmail = mysqli_query($connection, "SELECT * FROM cadUser WHERE email = '$email';");
+$result = mysqli_query($connection, "SELECT * FROM cadUser WHERE email = '$email';");
 
-// Verificar se a consulta foi bem-sucedida
-if ( $ExistEmail ) {
-    if ( mysqli_num_rows( $ExistEmail ) > 0 ) {
-        echo true;
+if ($result) {
+    // Se o usuário for encontrado, retornar o ID
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $userID = $row['idcadUser'];
+        echo $userID;
     } else {
+        // Se o usuário não for encontrado, retornar false
         echo false;
     }
 } else {
