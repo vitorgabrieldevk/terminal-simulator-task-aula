@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
 </head>
-<body>
+<body id="UserLogged">
     <div class="terminal">
         <div class="prompt">
             <span class="user-name">C:\Program Files (x86)/terminal.exe | Trabalho de programação web II | Aluno: Vitor Gabriel de Oliveira</span>

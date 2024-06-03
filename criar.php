@@ -40,6 +40,12 @@ if (isset($_SESSION['IsLogged']) && $_SESSION['IsLogged'] === true) {
                 <a href="login.php" class="link"><i class="bi bi-person-plus"></i> Entrar na sua conta</a>
             </span>
         </div>
+        <div class="prompt">
+            <span class="user-name link-container">
+                C:\Program Files (x86)\Microsoft.NET\Primary>
+                <a href="index.php" class="link"><i class="bi bi-house-door-fill"></i> Página Principal</a>
+            </span>
+        </div>
         <hr>
         <div class="prompt">
             <span class="user-name">C:/Users/vitor> ~(˘▽˘~) <span class="titulo">Se cadastre-se gratuitamente</span> (~˘▽˘)~</span>

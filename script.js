@@ -14,7 +14,6 @@ $.ajax({
     type: 'GET',
     success: function(response) {
         if (response === 'true') {
-
             $(".deslogar").show();
 
             $.ajax({
@@ -78,8 +77,89 @@ function executeCommand(command) {
     const resultElement = document.createElement('div');
     resultElement.classList.add('result');
 
-    if (!IsLogged) {
+    if (IsLogged) {
+        switch (command)  {
+            case 'clear':
+                outputDiv.innerHTML = '';
+                break;
+            case 'exit':
+                Swal.fire({
+                    title: "Você está saindo da sua conta",
+                    showDenyButton: true,
+                    confirmButtonText: "Continuar",
+                    denyButtonText: `Cancelar`
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: './controllers/LogOut.php',
+                            type: 'GET',
+                            success: function(response) {
+                                if (response === 'true') {
+                                    window.location.href = "index.php";                  
+                                };
+                            },
+                            error: function(xhr, status, error) {
+                                reject('Erro na requisição: ' + status + ' - ' + error);
+                            }
+                        }); 
+            
+                    } else if (result.isDenied) {
+                      Swal.fire("Operação cancelada!", "", "info");
+                    }
+                  });    
+            break;
+        };
 
+        if ( command.split(' ')[0] === 'clima') {
+
+            if (command.split(' ').length > 1) {
+                const city = command.split(' ').slice(1).join(' ');
+
+                const apiClima = {
+                    key: "64ed82577ced7f69cb1687f0ce536131",
+                    base: "https://api.openweathermap.org/data/2.5/",
+                    lang: "pt_br",
+                    units: "metric"
+                };
+
+                fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&lang=pt_br&units=metric&APPID=64ed82577ced7f69cb1687f0ce536131`)
+                    .then(response => {
+                        if (!response.ok) {
+                            document.querySelector(".output").innerHTML  += `
+                                <div class="result"><span class="erro-span">Cidade Inválida!</span></div>
+                            `;
+                        }
+                            return response.json();
+                        })
+                    .catch(error => {
+                        document.querySelector(".output").innerHTML  += `
+                            <div class="result"><span class="erro-span">Erro no servidor!</span></div>
+                        `;
+                    })
+                    .then(response => {
+                        console.log(response);
+                        document.querySelector(".output").innerHTML  += `
+                            <div class="result">Cidade: <span class="success-span">${city}</span></div>
+                            <div class="result">País: <span class="success-span">${response.sys.country}</span></div>
+                            <div class="result">Temperatura: <span class="success-span">${response.main.temp}°</span></div>
+                            <div class="result">Descrição: <span class="success-span">${response.weather[0].description}° <img class="img-icon-weather" src="https://openweathermap.org/img/wn/${response.weather[0].icon}.png"></span></div>
+
+                        `;
+                    });
+                
+
+            } else {
+                document.querySelector(".output").innerHTML  += `
+                    <div class="result"><span class="erro-span">A sintaxe do comando está incorreta!</span></div>
+                    <div class="result"><span class="info">clima [nome da cidade]</span></div>
+                `;
+            };
+        };
+
+        return;
+    };
+
+    if (!IsLogged) {
         switch (command)  {
             case 'login':
                 window.location.href = "./login.php";
@@ -95,74 +175,9 @@ function executeCommand(command) {
                     <div class="result"><span class="erro-span">Você não está logado!</span></div>
                 `;
                 break;
-        }
-
+        };
         return;
     };
-
-    switch (command) {
-        case 'help':
-            document.querySelector(".output").innerHTML  += `
-                <div class="result">Para obter mais informações sobre um comando específico,</div>
-                <div class="result">digite HELP nome_do_comando</div>
-                <div class="result"><span class="list-comand">HELP</span> -----------------Exibe a lista de comandos</div>
-                <div class="result"><span class="list-comand">ls</span>--------------------Exibe as pastas do diretório especificado ou atual.</div>
-                <div class="result"><span class="list-comand">dir</span>-------------------Exibe as pastas do diretório especificado ou atual.</div>
-            `;
-            break;
-        case 'dir':
-            document.querySelector(".output").innerHTML  += `
-                <div class="result">$ 29/05/2024  19:53    &lt;tDIR&gt;          .</div>
-                <div class="result">$ 29/05/2024  19:53    &lt;DIR&gt;          ..</div> 
-                <div class="result">$ 27/05/2024  09:29    &lt;DIR&gt;          .android</div> 
-                <div class="result">$ 28/05/2024  10:27                76 .gitconfig</div> 
-                <div class="result">$ 27/05/2024  10:38    &lt;DIR&gt;          .gradle</div> 
-                <div class="result">$ 27/05/2024  21:50    &lt;DIR&gt;         .vscode</div> 
-                <div class="result">$ 27/05/2024  19:24    &lt;DIR&gt;          Saved Games</div> 
-                <div class="result">$ 27/05/2024  12:31    &lt;DIR&gt;          OneDrive</div>
-                <div class="result">$ 2 arquivo(s)            197 bytes</div>
-                <div class="result">$  14 pasta(s)   319.216.332.800 bytes disponíveis</div> 
-            `;
-            break;
-        case 'login':
-            window.location.href = "./login.php";
-            break;
-        case 'criar':
-            window.location.href = "./criar.php";
-            break;
-        case 'clear':
-            outputDiv.innerHTML = '';
-            break;
-        case 'exit':
-                Swal.fire({
-                    title: "Você está saindo da sua conta",
-                    showDenyButton: true,
-                    confirmButtonText: "Continuar",
-                    denyButtonText: `Cancelar`
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            url: './controllers/LogOut.php',
-                            type: 'GET',
-                            success: function(response) {
-                                if (response === 'true') {
-                                    console.log('Saindoo...');
-                                    window.location.href = "index.php";                  
-                                };
-                            },
-                            error: function(xhr, status, error) {
-                                reject('Erro na requisição: ' + status + ' - ' + error);
-                            }
-                        }); 
-            
-                    } else if (result.isDenied) {
-                        resultElement.textContent = `'${command}' -> Operação cancelada!`;
-                    }
-                });   
-                break;
-        default:
-            resultElement.textContent = `'${command}' não é reconhecido como um comando interno ou  um programa operável ou um arquivo em lotes`;
-    }
 
     outputDiv.appendChild(resultElement);
     outputDiv.scrollTop = outputDiv.scrollHeight;

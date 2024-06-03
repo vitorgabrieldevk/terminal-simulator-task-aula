@@ -6,7 +6,7 @@ body, html {
 
     background: url(./assets/images/Back-image.gif);
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: 100% 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -123,6 +123,9 @@ body, html {
     color: rgb(241, 241, 40);
     font-weight: 600;
     font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .status {
@@ -143,4 +146,14 @@ body, html {
 
 .admin {
     color: red;
+}
+
+.img-icon-weather {
+    width: 40px;
+}
+
+.result {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
