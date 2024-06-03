@@ -2,6 +2,8 @@
 
 **Este projeto consiste em um simulador de terminal funcional em JavaScript, permitindo aos usuários executar comandos como criar contas, fazer login, gerenciar arquivos, simular comandos básicos do sistema e interagir com o simulador de forma intuitiva.**
 
+#
+
 ### 2. Funcionalidades
 
 **Criação e gerenciamento de contas:**
@@ -21,14 +23,21 @@
           - Sair da conta do usuário.
 
 
+#
+
 ### 3. Tecnologias Utilizadas
 
-**JavaScript:** Linguagem principal para desenvolvimento do simulador.
+**JavaScript:** Linguagem principal para desenvolvimento do simulador front end e tratamento das requisições.
 
-**Estrutura de dados:** Banco de dados construido em Mysql.
+**php:** Linguagem principal do back-end, consultas e atualizações no banco.
 
-**Interface de usuário:** Simulação de interface de terminal com prompt, entrada do usuário e saída formatada.
+**Mysql:** Banco de dados construido para armazenar dados dos usuários e horários dos registros e logins.
 
+**Css:** Estilização do projeto.
+
+**Html:** Estrutura do projeto.
+
+#
 
 ### 4. Instalação e Execução
 
@@ -37,6 +46,8 @@
       - php >7.4 e  <=8.1
   - Servidor Mysql
 
+#
+
 **4.2 Clonando o Repositório:**
 
 ``` Bash
@@ -44,17 +55,30 @@
   cd terminal-simulator-task-aula
 ```
 
-4.3 Execução:
+#
 
-Bash
-node index.js
-Use o código com cuidado.
-content_copy
-5. Uso do Simulador
+**4.3 Execução:**
 
-Ao iniciar o simulador, você verá um prompt de comando.
+Importante! 
+
+``` bash 
+  Inicialize o serviço 'apache' e o servidor local 'Mysql'
+  Crie um banco com o nome 'terminal.exe', e importe o dump localizado em 'database/Dump.sql'
+```
+
+``` bash
+  Abra o navegador, e digite localhost, e abra a pasta 'terminal-simulator-task-aula'
+```
+
+#
+
+**5. Uso do Simulador:**
+
+**Ao iniciar o simulador, você verá um prompt de comando.
 Digite comandos como criarConta, fazerLogin, dir, ls, cd, pwd, etc.
-Siga as instruções na tela para interagir com o simulador.
+Siga as instruções na tela para interagir com o simulador.**
+
+
 6. Documentação Detalhada
 
 6.1 Arquivos:
