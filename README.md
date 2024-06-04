@@ -7,27 +7,22 @@
 ### 2. Funcionalidades
 
 **Criação e gerenciamento de contas:**
-  - Os usuários podem criar novas contas com nome, senha e e-mail.
+  - Os usuários podem criar novas contas com nome, senha e e-mail e tipo de usuário.
   - As informações da conta são armazenadas em uma estrutura de banco Mysql.
 
 **Login e autenticação:**
   - Os usuários podem fazer login usando seus dados de conta.
   - A autenticação é validada para garantir a segurança.
+  - As senha são criptografadas usando o método bcrypt, usando um algoritmo forte de hash de mão única.
     
 **Simulação de comandos básicos do sistema:**
-  - O simulador oferece comandos como clima, dir, cd, etc, para navegar na estrutura de diretórios.
-  - A simulação exibe o conteúdo dos diretórios e simula a interação com o sistema.
-  - Comandos adicionais:
-      - Além dos comandos básicos, o simulador pode oferecer funcionalidades extras, como:
-          - Exibir informações da conta do usuário.
-          - Sair da conta do usuário.
-
+  - O simulador oferece comandos como clima e dir para navegar na estrutura de diretórios simulada.
 
 #
 
 ### 3. Tecnologias Utilizadas
 
-**JavaScript:** Linguagem principal para desenvolvimento do simulador front end e tratamento das requisições.
+**JavaScript:** Linguagem principal para desenvolvimento do front e tratamento das requisições.
 
 **php:** Linguagem principal do back-end, consultas e atualizações no banco.
 
@@ -75,56 +70,4 @@ Importante!
 **5. Uso do Simulador:**
 
 **Ao iniciar o simulador, você verá um prompt de comando.
-Digite comandos como criarConta, fazerLogin, dir, ls, cd, pwd, etc.
-Siga as instruções na tela para interagir com o simulador.**
-
-
-6. Documentação Detalhada
-
-6.1 Arquivos:
-
-index.js: Arquivo principal do simulador, contendo a lógica principal e a interface de usuário.
-utils.js: Módulo contendo funções utilitárias para manipulação de dados e formatação de saída.
-accounts.js: Módulo responsável pela gestão de contas de usuário, incluindo criação, login, edição e exclusão.
-commands.js: Módulo responsável pela implementação dos comandos simulados, como dir, ls, cd, pwd e outros.
-README.md: Este arquivo de documentação.
-6.2 Estrutura de Diretórios:
-
-simulador-terminal-js
-├── accounts.js
-├── commands.js
-├── index.js
-├── README.md
-└── utils.js
-6.3 Funcionalidades dos Módulos:
-
-accounts.js:
-Armazena informações de contas em um array de objetos.
-Oferece funções para:
-Criar nova conta.
-Fazer login.
-Editar informações da conta.
-Excluir conta.
-Verificar se o usuário está logado.
-Obter informações da conta do usuário logado.
-commands.js:
-Implementa os comandos simulados.
-Utiliza funções do módulo utils.js para manipulação de dados e formatação de saída.
-Oferece funções para:
-Listar arquivos e pastas do diretório atual (dir, ls).
-Mudar de diretório (cd).
-Exibir o caminho do diretório atual (pwd).
-Executar scripts JavaScript personalizados.
-utils.js:
-Contém funções utilitárias para:
-Formatar data e hora.
-Verificar se um diretório existe.
-Criar um diretório.
-Ler o conteúdo de um diretório.
-Executar um script JavaScript.
-7. Exemplos de Uso
-
-Criar uma nova conta:
-> criarConta
-Nome: João da Silva
-Senha: 
+Digite comandos como login, criar, clima [cidade], dir.**
